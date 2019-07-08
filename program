@@ -1,0 +1,27 @@
+char = 256
+def max_dis(str, n):
+    count = [0] * char
+    for i in range(n):
+        count[ord(str[i])] += 1
+    max_distinct = 0
+    for i in range(char):
+        if (count[i] != 0):
+            max_distinct += 1	
+    return max_distinct 
+
+def Substr_max(str):
+    n = len(str)	
+    max_distinct = max_dis(str, n) 
+    res = n	 
+    for i in range(n):
+        for j in range(n):
+            subs = str[i:j]
+            s_l = len(subs) 
+            s_char = max_dis(subs, s_l)
+            if (s_l < res and max_distinct == s_char):
+                res = s_l
+    return res
+
+var=input()
+ans=Substr_max(var)
+print(ans)
